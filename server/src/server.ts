@@ -3,47 +3,32 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import { z } from "zod";
 import cors from "cors";
+import { userService } from "./services/user";
 
 const PORT = 5000;
 // @filename: server.ts
 const t = initTRPC.create();
-interface User {
-  id: string;
-  name: string;
-}
-const userList: User[] = [
-  {
-    id: "1",
-    name: "KATT",
-  },
-];
+
 const appRouter = t.router({
   userById: t.procedure
     .input((val: unknown) => {
       if (typeof val === "string") return val;
       throw new Error(`Invalid input: ${typeof val}`);
     })
-    .query((req) => {
+    .query(async (req) => {
       const input = req.input;
-      const user = userList.find((it) => it.id === input);
-      return user;
+      return await userService.findWithId(input);
     }),
   hello: t.procedure.query(() => {
     return "hello world";
   }),
   userCreate: t.procedure
     .input(z.object({ name: z.string() }))
-    .mutation((req) => {
-      const id = String(userList.length + 1);
-      const user: User = {
-        id,
-        name: req.input.name,
-      };
-      userList.push(user);
-      return user;
+    .mutation(async (req) => {
+      return await userService.create({ name: req.input.name });
     }),
-  users: t.procedure.query(() => {
-    return userList;
+  users: t.procedure.query(async () => {
+    return await userService.getAll();
   }),
 });
 

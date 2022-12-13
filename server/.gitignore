@@ -1,6 +1,12 @@
 # Nodejs
 node_modules
 
+# Enviroment Variable
+.env
+
+# build
+dist
+
 # Lock files
 yarn.lock
 package-lock.json
