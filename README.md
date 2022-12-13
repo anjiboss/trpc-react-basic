@@ -2,13 +2,15 @@
 
 - Copy .env.example to .env
 
-```
+```bash
+cd server
 cp .env.example .env
 ```
 
 - Open .env and change DATABASE_URL value
 
 ```bash
+# Move into server folder (if not)
 cd server
 # Install packages
 yarn
@@ -27,6 +29,7 @@ yarn dev
 ## Set up Client
 
 ```bash
+# Move into client folder (if not)
 cd client
 
 # Install packages
