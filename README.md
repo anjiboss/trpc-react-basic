@@ -19,10 +19,10 @@ yarn
 npx prisma db push
 # Generate PrismaClient
 npx prisma generate
-# Run Watch Server
-yarn watch
 # Install nodemon if you don't have it globally
 yarn add -D nodemon
+# Run Watch Server
+yarn watch
 # Open new terminal and run dev server
 yarn dev
 ```
