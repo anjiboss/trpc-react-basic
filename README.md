@@ -1,13 +1,14 @@
 ## Set up server
 
-- Copy .env.example to .env
+- Copy .env.example to .env.
 
 ```bash
 cd server
 cp .env.example .env
 ```
 
-- Open .env and change DATABASE_URL value
+- Open .env and change DATABASE_URL value.
+- Install Packages and set up database.
 
 ```bash
 # Move into server folder (if not)
@@ -36,8 +37,7 @@ cd client
 yarn
 
 # Run dev server
-
 yarn dev
 ```
 
-- **Note**: you can change listen port in vite.config.ts
+- **Note**: you can change listen port in vite.config.ts.
